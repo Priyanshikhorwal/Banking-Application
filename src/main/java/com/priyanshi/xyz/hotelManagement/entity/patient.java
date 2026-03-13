@@ -1,4 +1,4 @@
-package com.priyanshi.xyz.hotelManagement.Entity;
+package com.priyanshi.xyz.hotelManagement.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
