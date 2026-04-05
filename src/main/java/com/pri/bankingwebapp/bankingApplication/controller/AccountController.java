@@ -23,7 +23,7 @@ public class AccountController {
     @GetMapping("/getAll")
     public ResponseEntity<List<AccountDto>> getAccountAll() {
 
-        return accountService.getAllUser();
+        return ResponseEntity.ok(accountService.getAllUser());
     }
 
     @PostMapping("/create")

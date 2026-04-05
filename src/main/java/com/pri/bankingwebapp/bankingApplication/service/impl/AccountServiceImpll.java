@@ -8,7 +8,10 @@ import com.pri.bankingwebapp.bankingApplication.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.pri.bankingwebapp.bankingApplication.mapper.AccountMapper.mapToAccountDto;
 
 @Service
 public class AccountServiceImpll implements AccountService {
@@ -24,12 +27,17 @@ public class AccountServiceImpll implements AccountService {
 
         Account account = AccountMapper.mapToAccount(accountDto);
         Account savedAccount = accountRepository.save(account);
-        return AccountMapper.mmapToAccountDto(savedAccount);
+        return mapToAccountDto(savedAccount);
     }
 
     @Override
-    public List<AccountDto> getAllUser(List<AccountDto> accountDtos) {
-        List<AccountDto> allAccount = accountRepository.findAll();
-        return ResponseEntity.ok(allAccount);
+    public List<AccountDto> getAllUser() {
+//        List<Account> allAccount = accountRepository.findAll();
+        List<AccountDto> accountDtos = new ArrayList<>();
+        for(Account account : accountRepository.findAll()) {
+            AccountDto accountDto = mapToAccountDto(account);
+            accountDtos.add(accountDto);
+        }
+        return accountDtos;
     }
 }
