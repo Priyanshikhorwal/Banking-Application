@@ -39,7 +39,7 @@ public class AccountServiceImpll implements AccountService {
         Pageable  pageable = PageRequest.of(page, size);
         Page<Account> accounts = accountRepository.findAll(pageable);
 
-        return accounts;
+        return accounts.map(this::mapToAccountDto);
     }
 
     @Override

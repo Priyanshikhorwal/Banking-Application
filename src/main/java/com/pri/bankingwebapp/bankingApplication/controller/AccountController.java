@@ -5,6 +5,7 @@ import com.pri.bankingwebapp.bankingApplication.entity.Account;
 import com.pri.bankingwebapp.bankingApplication.mapper.AccountMapper;
 import com.pri.bankingwebapp.bankingApplication.service.AccountService;
 import org.hibernate.sql.Update;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +23,9 @@ public class AccountController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<AccountDto>> getAccountAll() {
+    public Page<AccountDto> getAccountAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
 
-        return ResponseEntity.ok(accountService.getAllUser());
+        return accountService.getAllUser(page, size);
     }
 
     @PostMapping("/create")
