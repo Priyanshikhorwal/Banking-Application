@@ -4,6 +4,7 @@ import com.pri.bankingwebapp.bankingApplication.dto.AccountDto;
 import com.pri.bankingwebapp.bankingApplication.entity.Account;
 import com.pri.bankingwebapp.bankingApplication.mapper.AccountMapper;
 import com.pri.bankingwebapp.bankingApplication.service.AccountService;
+import org.hibernate.sql.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +30,11 @@ public class AccountController {
     @PostMapping("/create")
     public ResponseEntity<AccountDto> createAccount(@RequestBody AccountDto accountDto) {
 
-
         return new ResponseEntity<>(accountService.createAccount(accountDto),HttpStatus.CREATED);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<AccountDto> updateUserById(@PathVariable Long id, @RequestBody AccountDto accountDto) {
+        return new ResponseEntity<>(accountService.updateById(id,accountDto) ,HttpStatus.RESET_CONTENT);
     }
 
 }

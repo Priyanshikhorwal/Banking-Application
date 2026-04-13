@@ -3,6 +3,7 @@ package com.pri.bankingwebapp.bankingApplication.service;
 import com.pri.bankingwebapp.bankingApplication.dto.AccountDto;
 import com.pri.bankingwebapp.bankingApplication.entity.Account;
 import com.pri.bankingwebapp.bankingApplication.repository.AccountRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +16,7 @@ public interface AccountService  {
 
     AccountDto createAccount(AccountDto accountdto);
 
-    List<AccountDto> getAllUser();
+    Page<AccountDto> getAllUser(int page, int size);
+
+    AccountDto updateById(Long id, AccountDto accountDto);
 }
