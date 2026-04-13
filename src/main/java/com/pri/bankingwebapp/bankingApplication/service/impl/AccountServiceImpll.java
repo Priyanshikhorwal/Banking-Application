@@ -39,15 +39,15 @@ public class AccountServiceImpll implements AccountService {
         Pageable  pageable = PageRequest.of(page, size);
         Page<Account> accounts = accountRepository.findAll(pageable);
 
-        return accounts.map(this::mapToAccountDto);
+        return accounts.map(AccountMapper::mapToAccountDto);
     }
 
     @Override
     public AccountDto updateById(Long id, AccountDto accountDto) {
-        AccountDto account = new AccountDto();
+        Account account = new Account();
         account.setId(id);
         account.setAccountHolderName(accountDto.getAccountHolderName());
         account.setBalance(accountDto.getBalance());
-        return accountRepository.save(account);
+        return AccountMapper.mapToAccountDto(accountRepository.save(account));
     }
 }
