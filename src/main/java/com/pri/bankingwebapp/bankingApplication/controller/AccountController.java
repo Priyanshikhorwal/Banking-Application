@@ -4,10 +4,12 @@ import com.pri.bankingwebapp.bankingApplication.dto.AccountDto;
 import com.pri.bankingwebapp.bankingApplication.entity.Account;
 import com.pri.bankingwebapp.bankingApplication.mapper.AccountMapper;
 import com.pri.bankingwebapp.bankingApplication.service.AccountService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.hibernate.sql.Update;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +28,10 @@ public class AccountController {
     public Page<AccountDto> getAccountAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
 
         return accountService.getAllUser(page, size);
+    }
+    @GetMapping("/csrf-token")
+    public CsrfToken getToken(HttpServletRequest request){
+        return (CsrfToken)request.getAttribute("_csrf");
     }
 
     @PostMapping("/create")
