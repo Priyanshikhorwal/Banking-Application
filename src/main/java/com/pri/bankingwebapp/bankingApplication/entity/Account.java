@@ -18,4 +18,7 @@ public class Account {
     @Column(name="accountHolder")
     private String accountHolderName;
     private double balance;
+    @ManyToMany
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }
