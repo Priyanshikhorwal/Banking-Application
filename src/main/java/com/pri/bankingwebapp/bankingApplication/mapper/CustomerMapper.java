@@ -12,4 +12,11 @@ public class CustomerMapper {
         customer.setPhone_number(customerDto.getPhoneNumber());
         return customer;
     }
+    public static CustomerDto mapToCustomerDto(Customer customer) {
+        CustomerDto customerDto = new CustomerDto();
+        customerDto.setName(customer.getName());
+        customerDto.setEmail(customer.getEmail());
+        customerDto.setPhoneNumber(customer.getPhone_number());
+        return customerDto;
+    }
 }
