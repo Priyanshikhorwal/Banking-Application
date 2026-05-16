@@ -9,14 +9,14 @@ public class CustomerMapper {
         Customer customer = new Customer();
         customer.setName(customerDto.getName());
         customer.setEmail(customerDto.getEmail());
-        customer.setPhone_number(customerDto.getPhoneNumber());
+        customer.setPhoneNumber(customerDto.getPhoneNumber());
         return customer;
     }
     public static CustomerDto mapToCustomerDto(Customer customer) {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setName(customer.getName());
         customerDto.setEmail(customer.getEmail());
-        customerDto.setPhoneNumber(customer.getPhone_number());
+        customerDto.setPhoneNumber(customer.getPhoneNumber());
         return customerDto;
     }
 }
