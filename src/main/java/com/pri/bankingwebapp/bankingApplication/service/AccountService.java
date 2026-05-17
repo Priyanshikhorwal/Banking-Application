@@ -13,8 +13,7 @@ import java.util.List;
 public interface AccountService  {
 
 
-
-    AccountDto createAccount(AccountDto accountdto);
+    AccountDto createAccount(Long customerId, AccountDto accountdto);
 
     Page<AccountDto> getAllUser(int page, int size);
 

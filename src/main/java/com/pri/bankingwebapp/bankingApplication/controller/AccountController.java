@@ -35,9 +35,9 @@ public class AccountController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<AccountDto> createAccount(@RequestBody AccountDto accountDto) {
+    public ResponseEntity<AccountDto> createAccount(@PathVariable Long customerId,@RequestBody AccountDto accountDto) {
 
-        return new ResponseEntity<>(accountService.createAccount(accountDto),HttpStatus.CREATED);
+        return new ResponseEntity<>(accountService.createAccount(customerId,accountDto),HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
     public ResponseEntity<AccountDto> updateUserById(@PathVariable Long id, @RequestBody AccountDto accountDto) {

@@ -17,9 +17,9 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long customerId;
     private String name;
-    private String phone_number;
+    private String phoneNumber;
     private String email;
 
     @OneToMany(mappedBy = "customer")
