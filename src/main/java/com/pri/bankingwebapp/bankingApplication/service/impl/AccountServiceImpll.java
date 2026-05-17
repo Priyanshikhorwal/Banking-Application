@@ -2,8 +2,10 @@ package com.pri.bankingwebapp.bankingApplication.service.impl;
 
 import com.pri.bankingwebapp.bankingApplication.dto.AccountDto;
 import com.pri.bankingwebapp.bankingApplication.entity.Account;
+import com.pri.bankingwebapp.bankingApplication.entity.Customer;
 import com.pri.bankingwebapp.bankingApplication.mapper.AccountMapper;
 import com.pri.bankingwebapp.bankingApplication.repository.AccountRepository;
+import com.pri.bankingwebapp.bankingApplication.repository.CustomerRepository;
 import com.pri.bankingwebapp.bankingApplication.service.AccountService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,14 +22,18 @@ import static com.pri.bankingwebapp.bankingApplication.mapper.AccountMapper.mapT
 public class AccountServiceImpll implements AccountService {
 
     AccountRepository accountRepository;
+    CustomerRepository customerRepository;
 
-    public AccountServiceImpll(AccountRepository accountRepository) {
+    public AccountServiceImpll(AccountRepository accountRepository , CustomerRepository customerRepository) {
         this.accountRepository = accountRepository;
+        this.customerRepository = customerRepository;
     }
 
     @Override
-    public AccountDto createAccount(AccountDto accountDto) {
-
+    public AccountDto createAccount(Long customerId , AccountDto accountDto) {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(()->
+                        new RuntimeException("Customer Not Found"));
         Account account = AccountMapper.mapToAccount(accountDto);
         Account savedAccount = accountRepository.save(account);
         return mapToAccountDto(savedAccount);
