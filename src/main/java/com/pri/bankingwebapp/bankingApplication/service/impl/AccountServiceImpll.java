@@ -50,10 +50,13 @@ public class AccountServiceImpll implements AccountService {
 
     @Override
     public AccountDto updateById(Long id, AccountDto accountDto) {
-        Account account = new Account();
+
+        Account account = accountRepository.findById(id)
+                        .orElseThrow(()-> new RuntimeException("Account Not Found"));
         account.setId(id);
         account.setAccountHolderName(accountDto.getAccountHolderName());
         account.setBalance(accountDto.getBalance());
+        account.getCustomer().setName(accountDto.getAccountHolderName());
         return AccountMapper.mapToAccountDto(accountRepository.save(account));
     }
 }
